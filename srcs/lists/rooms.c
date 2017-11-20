@@ -65,10 +65,11 @@ void		append_room_list(t_room *room, t_lemin *lemin)
 		{
 			while (rooms->next)
 				rooms = rooms->next;
-				rooms->next = room;
+			rooms->next = room;
 		}
 		else
-			ft_printf("The room %s is set multiple times on the map\n", room->name);
+			ft_printf("The room %s is set multiple times"
+			" on the map\n", room->name);
 	}
 	else
 		lemin->rooms = room;

@@ -26,13 +26,13 @@
 # define FALSE				0
 # define MAX_ANTS			100000
 
-typedef struct 				s_pipe
+typedef struct				s_pipe
 {
 	void					*room;
 	struct s_pipe			*next;
 }							t_pipe;
 
-typedef struct 				s_room
+typedef struct				s_room
 {
 	char					*name;
 	int						x;
@@ -103,7 +103,8 @@ t_room						*new_room(char *name, int x, int y, t_lemin *lemin);
 /*
 **	PIPE
 */
-void						link_rooms(t_room *first, t_room *second, t_lemin *lemin);
+void						link_rooms(t_room *first, t_room *second, \
+	t_lemin *lemin);
 
 /*
 **	FREE LEMIN

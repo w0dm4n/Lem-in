@@ -24,7 +24,7 @@ static BOOL			set_end_room(t_lemin *lemin)
 	return (TRUE);
 }
 
-t_room			*new_room(char *name, int x, int y, t_lemin *lemin)
+t_room				*new_room(char *name, int x, int y, t_lemin *lemin)
 {
 	t_room		*room;
 
@@ -33,8 +33,12 @@ t_room			*new_room(char *name, int x, int y, t_lemin *lemin)
 	room->name = ft_strdup(name);
 	room->x = x;
 	room->y = y;
-	room->start_room = (lemin->waiting_for_start_room) ? set_start_room(lemin) : FALSE;
-	room->end_room = (lemin->waiting_for_end_room) ? set_end_room(lemin) : FALSE;
+	room->start_room = (lemin->waiting_for_start_room)
+	? set_start_room(lemin)
+	: FALSE;
+	room->end_room = (lemin->waiting_for_end_room)
+	? set_end_room(lemin)
+	: FALSE;
 	room->next = NULL;
 	room->pipes = NULL;
 	return (room);
