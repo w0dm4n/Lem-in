@@ -36,6 +36,15 @@ PRINTF_LIB			=	$(PRINTF_DIR)libprintf.a
 
 SRCBASE_LEM_IN	=	\
 					main.c						\
+					lemin.c						\
+					ant.c						\
+					parser.c					\
+					room.c						\
+					pipe.c						\
+					lists/rooms.c				\
+					lists/pipes.c				\
+					lists/ants.c				\
+					free.c						\
 
 SRCS_LEM_IN			=	$(addprefix $(SRCDIR_LEM_IN), $(SRCBASE_LEM_IN))
 OBJS_LEM_IN			=	$(addprefix $(OBJDIR_LEM_IN), $(SRCBASE_LEM_IN:.c=.o))
