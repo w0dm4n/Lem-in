@@ -43,10 +43,13 @@ static void		parse_entry(t_lemin *lemin)
 			{
 				if (!check_state(lemin, line))
 				{
-					if (ft_strchr(line, ROOM_DELIM) != NULL)
-						parse_room(lemin, line);
-					else if (ft_strchr(line, PIPE_DELIM) != NULL)
-						parse_pipe(lemin, line);
+					if (line[0] != COMMENT_DELIM)
+					{
+						if (ft_strchr(line, ROOM_DELIM) != NULL)
+							parse_room(lemin, line);
+						else if (ft_strchr(line, PIPE_DELIM) != NULL)
+							parse_pipe(lemin, line);
+					}
 				}
 			}
 			else
@@ -64,7 +67,17 @@ int				main(int argc, char **argv)
 		return (-1);
 	parse_entry(lemin);
 	init_ants(lemin);
-	ft_printf("%s\n", lemin->ants->current_room->name);
+	// ft_printf("%s\n", lemin->ants->current_room->name);
+	// t_room		*rooms = lemin->rooms;
+	// while (rooms)
+	// {
+	// 	printf("Name: %s\n", rooms->name);
+	// 	rooms = rooms->next;
+	// }
+	// if (room_linked(get_room_by_name("Nm_otool", lemin), get_room_by_name("IRC", lemin)))
+	// {
+	// 	ft_printf("Room linked !\n");
+	// }
 	free_lemin(lemin);
 	return (0);
 }
