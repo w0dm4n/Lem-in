@@ -89,49 +89,51 @@ t_path		*cpy_path(t_path *path)
 	return (n);
 }
 
+BOOL		check_result(t_room *room, t_room *end_room, t_path *path)
+{
+	if (room_linked(room, end_room))
+	{
+		print_list(path->rooms);
+		ft_printf("\n");
+		return (TRUE);
+	}
+	return (FALSE);
+}
+
 BOOL		find_path(t_room *room, t_path *path, t_lemin *lemin, t_room *end_room)
 {
-	t_room		*rooms;
-	t_room		*last;
-
-	rooms = lemin->rooms;
-	last = (path->rooms) ? last_from_path(path) : NULL;
-	while (rooms)
+	if (check_result(room, end_room, path))
+		return (TRUE);
+	t_pipe *pipe = room->pipes;
+	if (count_pipes(room) > 2)
 	{
-		last = (path->rooms) ? last_from_path(path) : NULL;
-		if (last && rooms == last)
+		if (!in_path_list(room, path->rooms))
+			append_path_list(copy_room(room), path);
+		while (pipe)
 		{
-			rooms = rooms->next;
-			continue;
-		}
-		if (rooms != end_room && rooms != get_start_room(lemin))
-		{
-			if ((rooms != room && room_linked(rooms, last) && !in_path_list(rooms, path->rooms)) || last == NULL)
+			if (!in_path_list(pipe->room, path->rooms))
 			{
-				print_list(path->rooms);
-				ft_printf("\n");
-				append_path_list(copy_room(rooms), path);
-				if (room_linked(rooms, end_room))
-				{
-					t_room *start = get_start_room(lemin);
-					ft_printf(" %s - ", start->name);
-					print_list(path->rooms);
-					ft_printf(" %s\n", end_room->name);
-					return (TRUE);
-				}
-				if (count_pipes(rooms) > 2)
-				{
-					t_pipe *pipes = rooms->pipes;
-					while (pipes)
-					{
-						find_path(pipes->room, cpy_path(path), lemin, end_room);
-						pipes = pipes->next;
-					}
-				}
-				else
-					find_path(last_from_path(path), path, lemin, end_room);
+				t_path *cpy = cpy_path(path);
+				append_path_list(copy_room(pipe->room), cpy);
+				find_path(pipe->room, cpy, lemin, end_room);
 			}
+			pipe = pipe->next;
 		}
-		rooms = rooms->next;
+	}
+	else
+	{
+		t_room *rooms = lemin->rooms;
+		while (rooms)
+		{
+			if (rooms != room && rooms != end_room
+				 && room_linked(rooms, room) && !in_path_list(rooms, path->rooms))
+			{
+				append_path_list(copy_room(rooms), path);
+				if (check_result(room, end_room, path))
+					return (TRUE);
+				find_path(last_from_path(path), path, lemin, end_room);
+			}
+			rooms = rooms->next;
+		}
 	}
 }
