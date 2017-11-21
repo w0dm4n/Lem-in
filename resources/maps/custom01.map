@@ -1,0 +1,11 @@
+100
+salle-de-tueur 1 0
+##start
+salle-de-la-mort-qui-tue 2 0
+cc 2 0
+##end
+wshalor 0 1
+flipmode 1 1
+#salut coucou ca va?
+bienoukoi 2 1
+wshalor-bienoukoi
