@@ -35,6 +35,8 @@ BOOL		room_linked(t_room *first, t_room *second)
 	t_pipe	*pipes;
 	t_room	*tmp_room;
 
+	if (!first || !second)
+		return (FALSE);
 	tmp_room = NULL;
 	pipes = first->pipes;
 	while (pipes)

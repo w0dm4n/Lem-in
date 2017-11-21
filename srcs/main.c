@@ -59,6 +59,17 @@ static void		parse_entry(t_lemin *lemin)
 	}
 }
 
+static void		print_list(t_room *rooms)
+{
+	t_room *p = rooms;
+	while (p)
+	{
+		ft_printf("%s - ", p->name);
+		p = p->next;
+	}
+	ft_printf("\n");
+}
+
 int				main(int argc, char **argv)
 {
 	t_lemin		*lemin;
@@ -69,12 +80,10 @@ int				main(int argc, char **argv)
 		return (-1);
 	parse_entry(lemin);
 	init_ants(lemin);
-	if (find_paths((t_path*)&paths, lemin) > 0)
-	{
 
-	}
-	else
-		ft_printf("No possible path found between the start and the end room\n");
+	paths[0].rooms = NULL;
+	find_path(get_start_room(lemin), &paths[0], lemin, get_end_room(lemin));
+	// print_list(paths[0].rooms);
 	// ants = lemin->ants;
 	// while (ants)
 	// {

@@ -96,13 +96,13 @@ LEM_IN: $(OBJDIR_LEM_IN) $(OBJS_LEM_IN)
 clean:
 	@rm -rf $(OBJDIR_LEM_IN)
 	@make -C $(LIBFT_DIR) clean
-	@make -C $(PRINTF_DIR) clean
+	#@make -C $(PRINTF_DIR) clean
 	echo "\r\033[38;5;124m📕  CLEAN $(OBJDIR_LEM_IN)\033[0m\033[K";
 
 fclean:		clean
 	@rm -rf $(EXE_NAME)
 	@make -C $(LIBFT_DIR) fclean
-	@make -C $(PRINTF_DIR) fclean
+	#@make -C $(PRINTF_DIR) fclean
 	echo "\r\033[38;5;124m📕  FCLEAN $(NAME_LEM_IN)\033[0m\033[K";
 
 -include $(OBJS:.o=.d)

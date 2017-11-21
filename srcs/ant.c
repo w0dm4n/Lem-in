@@ -14,16 +14,19 @@
 
 void			get_ants_length(t_lemin *lemin, char *line)
 {
-	if ((lemin->ants_length = ft_atoi(line)) <= 0)
+	if (line[0] != COMMENT_DELIM)
 	{
-		ft_printf("Invalid number of ants.. %s\n", line);
-		exit(-1);
-	}
-	else if (lemin->ants_length > MAX_ANTS)
-	{
-		ft_printf("Invalid number of ants.. (%d > %d) \n", lemin->ants_length,
-			MAX_ANTS);
-		exit(-1);
+		if ((lemin->ants_length = ft_atoi(line)) <= 0)
+		{
+			ft_printf("Invalid number of ants.. %s\n", line);
+			exit(-1);
+		}
+		else if (lemin->ants_length > MAX_ANTS)
+		{
+			ft_printf("Invalid number of ants.. (%d > %d) \n", lemin->ants_length,
+				MAX_ANTS);
+			exit(-1);
+		}
 	}
 }
 

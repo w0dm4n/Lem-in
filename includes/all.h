@@ -136,5 +136,5 @@ void						move_ant(t_ant *ant, t_lemin *lemin);
 /*
 **	PATH FINDING
 */
-BOOL						find_paths(t_path *paths, t_lemin *lemin);
+BOOL						find_path(t_room *room, t_path *path, t_lemin *lemin, t_room *end_room);
 #endif
