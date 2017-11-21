@@ -35,3 +35,18 @@ void		link_rooms(t_room *first, t_room *second, t_lemin *lemin)
 		}
 	}
 }
+
+int			count_pipes(t_room *room)
+{
+	t_pipe	*pipes;
+	int		count;
+
+	count = 0;
+	pipes = room->pipes;
+	while (pipes)
+	{
+		count += 1;
+		pipes = pipes->next;
+	}
+	return (count);
+}

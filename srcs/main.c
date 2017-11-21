@@ -62,21 +62,24 @@ static void		parse_entry(t_lemin *lemin)
 int				main(int argc, char **argv)
 {
 	t_lemin		*lemin;
+	t_ant		*ants;
+	t_path		paths[MAX_PATHS];
 
 	if (!(lemin = alloc_lemin()))
 		return (-1);
 	parse_entry(lemin);
 	init_ants(lemin);
-	// ft_printf("%s\n", lemin->ants->current_room->name);
-	// t_room		*rooms = lemin->rooms;
-	// while (rooms)
+	if (find_paths((t_path*)&paths, lemin) > 0)
+	{
+
+	}
+	else
+		ft_printf("No possible path found between the start and the end room\n");
+	// ants = lemin->ants;
+	// while (ants)
 	// {
-	// 	printf("Name: %s\n", rooms->name);
-	// 	rooms = rooms->next;
-	// }
-	// if (room_linked(get_room_by_name("Nm_otool", lemin), get_room_by_name("IRC", lemin)))
-	// {
-	// 	ft_printf("Room linked !\n");
+	// 	move_ant(ants, lemin);
+	// 	ants = ants->next;
 	// }
 	free_lemin(lemin);
 	return (0);

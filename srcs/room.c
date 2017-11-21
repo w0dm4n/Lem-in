@@ -24,6 +24,17 @@ static BOOL			set_end_room(t_lemin *lemin)
 	return (TRUE);
 }
 
+t_room				*copy_room(t_room *cpy)
+{
+	t_room			*new_room;
+
+	if (!(new_room = (t_room*)malloc(sizeof(struct s_room))))
+		return (NULL);
+	ft_memcpy(new_room, cpy, sizeof(struct s_room));
+	new_room->next = NULL;
+	return (new_room);
+}
+
 t_room				*new_room(char *name, int x, int y, t_lemin *lemin)
 {
 	t_room		*room;

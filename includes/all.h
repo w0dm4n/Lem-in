@@ -26,6 +26,7 @@
 # define TRUE				1
 # define FALSE				0
 # define MAX_ANTS			100000
+# define MAX_PATHS			10
 
 typedef struct				s_pipe
 {
@@ -51,6 +52,12 @@ typedef struct				s_ant
 	struct s_ant			*next;
 }							t_ant;
 
+typedef struct				s_path
+{
+	t_room					*rooms;
+	BOOL					valid;
+}							t_path;
+
 typedef struct				s_lemin
 {
 	int						ants_length;
@@ -58,7 +65,14 @@ typedef struct				s_lemin
 	BOOL					waiting_for_end_room;
 	t_room					*rooms;
 	t_ant					*ants;
+	t_path					*paths;
 }							t_lemin;
+
+typedef struct				s_forbidden
+{
+	char					*room_name;
+	struct s_forbidden		*next;
+}							t_forbidden;
 
 /*
 **	ROOMS LISTS
@@ -100,15 +114,27 @@ void						parse_pipe(t_lemin *lemin, char *line);
 **	ROOM
 */
 t_room						*new_room(char *name, int x, int y, t_lemin *lemin);
+t_room						*copy_room(t_room *cpy);
 
 /*
 **	PIPE
 */
 void						link_rooms(t_room *first, t_room *second, \
 	t_lemin *lemin);
+int							count_pipes(t_room *room);
 
 /*
 **	FREE LEMIN
 */
 void						free_lemin(t_lemin *lemin);
+
+/*
+**	TIMELINE
+*/
+void						move_ant(t_ant *ant, t_lemin *lemin);
+
+/*
+**	PATH FINDING
+*/
+BOOL						find_paths(t_path *paths, t_lemin *lemin);
 #endif
