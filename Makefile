@@ -50,6 +50,7 @@ SRCBASE_LEM_IN	=	\
 					timeline.c					\
 					path.c						\
 					paths_validity.c			\
+					path_chooser.c				\
 
 SRCS_LEM_IN			=	$(addprefix $(SRCDIR_LEM_IN), $(SRCBASE_LEM_IN))
 OBJS_LEM_IN			=	$(addprefix $(OBJDIR_LEM_IN), $(SRCBASE_LEM_IN:.c=.o))

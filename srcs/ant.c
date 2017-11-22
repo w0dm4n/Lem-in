@@ -40,6 +40,7 @@ t_ant			*new_ant(int id, t_room *start_room)
 	new_ant->current_room = start_room;
 	new_ant->next = NULL;
 	new_ant->following_path = NULL;
+	new_ant->in_end_room = FALSE;
 	return (new_ant);
 }
 

@@ -57,6 +57,7 @@ typedef struct				s_ant
 	int						id;
 	t_room					*current_room;
 	t_path					*following_path;
+	BOOL					in_end_room;
 	struct s_ant			*next;
 }							t_ant;
 
@@ -102,6 +103,7 @@ void						append_ants_list(t_ant *new_ant, t_lemin *lemin);
 void						append_paths_list(t_path *path, t_path *paths);
 int							count_paths(t_path *paths);
 t_path						*remove_from_paths_list(t_path *path, t_path *paths);
+int							count_rooms(t_room *rooms);
 
 /*
 **	LEMIN
@@ -147,7 +149,7 @@ void						free_path(t_path *base);
 /*
 **	TIMELINE
 */
-void						move_ant(t_ant *ant, t_lemin *lemin);
+void						move_ant(t_ant *ant, t_room *room, t_lemin *lemin);
 
 /*
 **	PATH FINDING
@@ -158,6 +160,11 @@ BOOL						find_paths(t_room *room, t_path *path, t_lemin *lemin, t_room *end_roo
 **	PATH CHECKER
 */
 void						check_paths_validity(t_path *paths, t_lemin *lemin);
+
+/*
+**	PATH CHOOSER
+*/
+void						select_path(t_ant *ant, t_lemin *lemin);
 
 /*
 **	TIMELINE

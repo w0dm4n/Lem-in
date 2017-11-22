@@ -12,6 +12,21 @@
 
 #include "all.h"
 
+int			count_rooms(t_room *rooms)
+{
+	t_room		*r;
+	int			count;
+
+	count = 0;
+	r = rooms;
+	while (r)
+	{
+		count += 1;
+		r = r->next;
+	}
+	return (count);
+}
+
 void		print_rooms(t_room *rooms)
 {
 	t_room	*p;
