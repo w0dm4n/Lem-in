@@ -73,26 +73,22 @@ static void		print_list(t_room *rooms)
 int				main(int argc, char **argv)
 {
 	t_lemin		*lemin;
-	t_ant		*ants;
 
 	if (!(lemin = alloc_lemin()))
 		return (-1);
 	parse_entry(lemin);
-	init_ants(lemin);
-	find_paths(get_start_room(lemin), lemin->paths, lemin, get_end_room(lemin));
-	check_paths_validity(lemin->paths, lemin);
-	if (count_paths(lemin->paths) > 0)
+	if (lemin->ants_length > 0 && get_start_room(lemin) != NULL)
 	{
-		t_path *paths = lemin->paths;
-		while (paths)
-		{
-			print_rooms(paths->rooms);
-			ft_printf("\n---------------- END OF A PATH ---------------\n ");
-			paths = paths->next;
-		}
+		init_ants(lemin);
+		find_paths(get_start_room(lemin), lemin->paths, lemin, get_end_room(lemin));
+		check_paths_validity(lemin->paths, lemin);
+		if (count_paths(lemin->paths) > 0)
+			start_timeline(lemin);
+		else
+			ft_printf("No path found for this map.. please check the datas\n");
 	}
 	else
-		ft_printf("No path found for this map.. please check the datas\n");
+		ft_printf("Invalid map.. please check the datas\n");
 	free_lemin(lemin);
 	return (0);
 }

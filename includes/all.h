@@ -45,19 +45,20 @@ typedef struct				s_room
 	struct s_pipe			*pipes;
 }							t_room;
 
-typedef struct				s_ant
-{
-	int						id;
-	t_room					*current_room;
-	struct s_ant			*next;
-}							t_ant;
-
 typedef struct				s_path
 {
 	t_room					*rooms;
 	BOOL					valid;
 	struct s_path			*next;
 }							t_path;
+
+typedef struct				s_ant
+{
+	int						id;
+	t_room					*current_room;
+	t_path					*following_path;
+	struct s_ant			*next;
+}							t_ant;
 
 typedef struct				s_lemin
 {
@@ -157,4 +158,9 @@ BOOL						find_paths(t_room *room, t_path *path, t_lemin *lemin, t_room *end_roo
 **	PATH CHECKER
 */
 void						check_paths_validity(t_path *paths, t_lemin *lemin);
+
+/*
+**	TIMELINE
+*/
+void						start_timeline(t_lemin *lemin);
 #endif

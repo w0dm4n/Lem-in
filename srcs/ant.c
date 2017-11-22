@@ -39,6 +39,7 @@ t_ant			*new_ant(int id, t_room *start_room)
 	new_ant->id = id;
 	new_ant->current_room = start_room;
 	new_ant->next = NULL;
+	new_ant->following_path = NULL;
 	return (new_ant);
 }
 

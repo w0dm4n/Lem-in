@@ -80,8 +80,10 @@ void		append_room_list(t_room *room, t_lemin *lemin)
 			rooms->next = room;
 		}
 		else
+		{
 			ft_printf("The room %s is set multiple times"
 			" on the map\n", room->name);
+		}
 	}
 	else
 		lemin->rooms = room;

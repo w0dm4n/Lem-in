@@ -138,6 +138,8 @@ BOOL		find_paths(t_room *room, t_path *path, t_lemin *lemin, t_room *end_room)
 			else if (rooms != room && rooms != end_room
 				 && room_linked(rooms, last) && !in_path_list(rooms, path->rooms))
 			{
+				print_rooms(path->rooms);
+				ft_printf("\n");
 				append_path_room_list(copy_room(rooms), path);
 				if (check_result(room, end_room, path, lemin))
 					return (TRUE);
