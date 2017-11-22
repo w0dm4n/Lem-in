@@ -23,6 +23,7 @@ t_lemin		*alloc_lemin(void)
 	lemin->waiting_for_start_room = FALSE;
 	lemin->rooms = NULL;
 	lemin->ants = NULL;
-	lemin->paths = NULL;
+	if (!(lemin->paths = alloc_path(NULL)))
+		return (NULL);
 	return (lemin);
 }

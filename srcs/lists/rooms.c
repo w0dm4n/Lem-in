@@ -12,6 +12,18 @@
 
 #include "all.h"
 
+void		print_rooms(t_room *rooms)
+{
+	t_room	*p;
+
+	p = rooms;
+	while (p)
+	{
+		ft_printf("%s - ", p->name);
+		p = p->next;
+	}
+}
+
 t_room		*get_room_by_name(char *name, t_lemin *lemin)
 {
 	t_room		*rooms;

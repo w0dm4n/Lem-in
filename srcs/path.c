@@ -11,3 +11,15 @@
 /* ************************************************************************** */
 
 #include "all.h"
+
+t_path		*alloc_path(t_room *room)
+{
+	t_path		*path;
+
+	if (!(path = (t_path*)malloc(sizeof(struct s_path))))
+		return (NULL);
+	path->rooms = room;
+	path->valid = FALSE;
+	path->next = NULL;
+	return (path);
+}

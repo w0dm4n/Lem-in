@@ -26,7 +26,7 @@
 # define TRUE				1
 # define FALSE				0
 # define MAX_ANTS			100000
-# define MAX_PATHS			10
+# define MAX_PATHS			100
 
 typedef struct				s_pipe
 {
@@ -56,6 +56,7 @@ typedef struct				s_path
 {
 	t_room					*rooms;
 	BOOL					valid;
+	struct s_path			*next;
 }							t_path;
 
 typedef struct				s_lemin
@@ -81,6 +82,7 @@ void						append_room_list(t_room *room, t_lemin *lemin);
 t_room						*get_room_by_name(char *name, t_lemin *lemin);
 t_room						*get_start_room(t_lemin *lemin);
 t_room						*get_end_room(t_lemin *lemin);
+void						print_rooms(t_room *rooms);
 
 /*
 **	PIPES LISTS
@@ -92,6 +94,13 @@ BOOL						room_linked(t_room *first, t_room *second);
 **	ANTS LISTS
 */
 void						append_ants_list(t_ant *new_ant, t_lemin *lemin);
+
+/*
+**	PATHS LISTS
+*/
+void						append_paths_list(t_path *path, t_path *paths);
+int							count_paths(t_path *paths);
+t_path						*remove_from_paths_list(t_path *path, t_path *paths);
 
 /*
 **	LEMIN
@@ -117,6 +126,11 @@ t_room						*new_room(char *name, int x, int y, t_lemin *lemin);
 t_room						*copy_room(t_room *cpy);
 
 /*
+**	PATH
+*/
+t_path						*alloc_path(t_room *room);
+
+/*
 **	PIPE
 */
 void						link_rooms(t_room *first, t_room *second, \
@@ -127,6 +141,7 @@ int							count_pipes(t_room *room);
 **	FREE LEMIN
 */
 void						free_lemin(t_lemin *lemin);
+void						free_path(t_path *base);
 
 /*
 **	TIMELINE
@@ -136,5 +151,10 @@ void						move_ant(t_ant *ant, t_lemin *lemin);
 /*
 **	PATH FINDING
 */
-BOOL						find_path(t_room *room, t_path *path, t_lemin *lemin, t_room *end_room);
+BOOL						find_paths(t_room *room, t_path *path, t_lemin *lemin, t_room *end_room);
+
+/*
+**	PATH CHECKER
+*/
+void						check_paths_validity(t_path *paths, t_lemin *lemin);
 #endif

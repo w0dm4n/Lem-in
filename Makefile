@@ -44,10 +44,12 @@ SRCBASE_LEM_IN	=	\
 					lists/rooms.c				\
 					lists/pipes.c				\
 					lists/ants.c				\
+					lists/paths.c				\
 					free.c						\
 					pathfinding.c				\
 					timeline.c					\
 					path.c						\
+					paths_validity.c			\
 
 SRCS_LEM_IN			=	$(addprefix $(SRCDIR_LEM_IN), $(SRCBASE_LEM_IN))
 OBJS_LEM_IN			=	$(addprefix $(OBJDIR_LEM_IN), $(SRCBASE_LEM_IN:.c=.o))

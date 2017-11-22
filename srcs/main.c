@@ -74,22 +74,25 @@ int				main(int argc, char **argv)
 {
 	t_lemin		*lemin;
 	t_ant		*ants;
-	t_path		paths[MAX_PATHS];
 
 	if (!(lemin = alloc_lemin()))
 		return (-1);
 	parse_entry(lemin);
 	init_ants(lemin);
-
-	paths[0].rooms = NULL;
-	find_path(get_start_room(lemin), &paths[0], lemin, get_end_room(lemin));
-	// print_list(paths[0].rooms);
-	// ants = lemin->ants;
-	// while (ants)
-	// {
-	// 	move_ant(ants, lemin);
-	// 	ants = ants->next;
-	// }
+	find_paths(get_start_room(lemin), lemin->paths, lemin, get_end_room(lemin));
+	check_paths_validity(lemin->paths, lemin);
+	if (count_paths(lemin->paths) > 0)
+	{
+		t_path *paths = lemin->paths;
+		while (paths)
+		{
+			print_rooms(paths->rooms);
+			ft_printf("\n---------------- END OF A PATH ---------------\n ");
+			paths = paths->next;
+		}
+	}
+	else
+		ft_printf("No path found for this map.. please check the datas\n");
 	free_lemin(lemin);
 	return (0);
 }

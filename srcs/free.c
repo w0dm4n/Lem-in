@@ -51,3 +51,21 @@ void			free_lemin(t_lemin *lemin)
 	free_ants(lemin);
 	free(lemin);
 }
+
+void			free_rooms(t_room *base)
+{
+	t_room	*r;
+
+	r = base;
+	while (r)
+	{
+		free(r);
+		r = r->next;
+	}
+}
+
+void			free_path(t_path *base)
+{
+	free_rooms(base->rooms);
+	free(base);
+}
