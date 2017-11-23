@@ -39,7 +39,11 @@ void			free_ants(t_lemin *lemin)
 void			free_lemin(t_lemin *lemin)
 {
 	t_room		*rooms;
+	t_command	*commands;
+	t_comment	*comments;
 
+	commands = lemin->commands;
+	comments = lemin->comments;
 	rooms = lemin->rooms;
 	while (rooms)
 	{
@@ -50,6 +54,18 @@ void			free_lemin(t_lemin *lemin)
 	}
 	free_ants(lemin);
 	free(lemin);
+	while (commands)
+	{
+		ft_strdel(&commands->name);
+		free(commands);
+		commands = commands->next;
+	}
+	while (comments)
+	{
+		ft_strdel(&comments->name);
+		free(comments);
+		comments = comments->next;
+	}
 }
 
 void			free_rooms(t_room *base)

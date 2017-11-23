@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lemin.c                                            :+:      :+:    :+:   */
+/*   comment.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: frmarinh <frmarinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/19 23:38:45 by frmarinh          #+#    #+#             */
-/*   Updated: 2017/11/19 23:41:55 by frmarinh         ###   ########.fr       */
+/*   Created: 2017/11/23 10:35:28 by frmarinh          #+#    #+#             */
+/*   Updated: 2017/11/23 10:35:31 by frmarinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
 
-t_lemin		*alloc_lemin(void)
+t_comment		*new_comment(char *name)
 {
-	t_lemin		*lemin;
+	t_comment	*comment;
 
-	if (!(lemin = (t_lemin*)malloc(sizeof(struct s_lemin))))
+	if (!(comment = (t_comment*)malloc(sizeof(struct s_comment))))
 		return (NULL);
-	lemin->ants_length = 0;
-	lemin->waiting_for_end_room = FALSE;
-	lemin->waiting_for_start_room = FALSE;
-	lemin->rooms = NULL;
-	lemin->ants = NULL;
-	lemin->commands = NULL;
-	lemin->comments = NULL;
-	if (!(lemin->map_raw = ft_strnew(0)))
-		return (NULL);
-	if (!(lemin->paths = alloc_path(NULL)))
-		return (NULL);
-	return (lemin);
+	comment->name = ft_strdup(name);
+	comment->next = NULL;
+	return (comment);
 }

@@ -62,6 +62,18 @@ typedef struct				s_ant
 	struct s_ant			*next;
 }							t_ant;
 
+typedef struct				s_command
+{
+	char					*name;
+	struct s_command		*next;
+}							t_command;
+
+typedef struct				s_comment
+{
+	char					*name;
+	struct s_comment		*next;
+}							t_comment;
+
 typedef struct				s_lemin
 {
 	int						ants_length;
@@ -70,6 +82,9 @@ typedef struct				s_lemin
 	t_room					*rooms;
 	t_ant					*ants;
 	t_path					*paths;
+	t_command				*commands;
+	t_comment				*comments;
+	char					*map_raw;
 }							t_lemin;
 
 typedef struct				s_forbidden
@@ -77,6 +92,16 @@ typedef struct				s_forbidden
 	char					*room_name;
 	struct s_forbidden		*next;
 }							t_forbidden;
+
+/*
+**	COMMAND
+*/
+t_command					*new_command(char *name);
+
+/*
+**	COMMENT
+*/
+t_comment					*new_comment(char *name);
 
 /*
 **	ROOMS LISTS
@@ -105,6 +130,19 @@ void						append_paths_list(t_path *path, t_path *paths);
 int							count_paths(t_path *paths);
 t_path						*remove_from_paths_list(t_path *p, t_path *ps);
 int							count_rooms(t_room *rooms);
+
+/*
+**	COMMANDS LISTS
+*/
+void						append_commands_list(t_command *command,
+		t_lemin *lemin);
+
+/*
+**	COMMENTS LISTS
+*/
+void						append_comments_list(t_comment *comment,
+		t_lemin *lemin);
+int							count_comments(t_comment *comments);
 
 /*
 **	LEMIN
@@ -175,4 +213,9 @@ void						select_path(t_ant *ant, t_lemin *lemin);
 */
 void						start_timeline(t_lemin *lemin);
 BOOL						ant_in_room(char *room_name, t_lemin *lemin);
+
+/*
+**	PRINT
+*/
+void						print_commands_and_comments(t_lemin *lemin);
 #endif
