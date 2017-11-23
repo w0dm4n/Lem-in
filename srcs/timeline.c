@@ -75,6 +75,7 @@ void			start_timeline(t_lemin *lemin)
 
 	ft_printf("\nAnts path: \n");
 	ants = NULL;
+	range_paths(lemin);
 	while (ants_not_on_end_room(lemin))
 	{
 		ants = lemin->ants;

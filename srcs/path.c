@@ -12,6 +12,15 @@
 
 #include "all.h"
 
+void		switch_rooms(t_path *larger, t_path *smaller)
+{
+	t_room	*tmp;
+
+	tmp = larger->rooms;
+	larger->rooms = smaller->rooms;
+	smaller->rooms = tmp;
+}
+
 t_path		*alloc_path(t_room *room)
 {
 	t_path		*path;

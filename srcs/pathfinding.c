@@ -12,21 +12,6 @@
 
 #include "all.h"
 
-void		append_path_room_list(t_room *room, t_path *path)
-{
-	t_room		*rooms;
-
-	rooms = path->rooms;
-	if (path->rooms)
-	{
-		while (rooms->next)
-			rooms = rooms->next;
-		rooms->next = room;
-	}
-	else
-		path->rooms = room;
-}
-
 t_room		*last_from_path(t_path *path)
 {
 	t_room		*rooms;

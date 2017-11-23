@@ -17,6 +17,8 @@ t_room		*get_last_path_room(t_path *path)
 	t_room		*rooms;
 
 	rooms = path->rooms;
+	if (!rooms)
+		return (NULL);
 	while (rooms->next)
 		rooms = rooms->next;
 	return (rooms);

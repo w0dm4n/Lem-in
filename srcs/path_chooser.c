@@ -12,24 +12,81 @@
 
 #include "all.h"
 
-t_path		*find_shortest_path(t_lemin *lemin)
+void		range_paths(t_lemin *lemin)
 {
 	t_path		*paths;
-	t_path		*chosen;
-	int			smallest;
+	t_path		*prev;
+	t_path		*tmp;
 	int			path_rooms;
 
-	smallest = 0;
-	chosen = NULL;
 	paths = lemin->paths;
 	path_rooms = 0;
+	prev = NULL;
+	tmp = NULL;
 	while (paths)
 	{
-		path_rooms = count_rooms(paths->rooms);
-		if (path_rooms < smallest || smallest == 0)
+		if (prev && count_rooms(paths->rooms) < count_rooms(prev->rooms))
+		{
+			switch_rooms(prev, paths);
+			paths = lemin->paths;
+		}
+		prev = paths;
+		paths = paths->next;
+	}
+}
+
+BOOL		ant_on_room(char *room_name, t_lemin *lemin, t_ant *ant)
+{
+	t_ant		*ants;
+
+	ants = lemin->ants;
+	while (ants)
+	{
+		if (ants->id != ant->id &&
+			!ft_strcmp(room_name, ants->current_room->name))
+			return (TRUE);
+		ants = ants->next;
+	}
+	return (FALSE);
+}
+
+int			get_first_ant_on_path(t_room *rooms, t_lemin *lemin, t_ant *ant)
+{
+	t_room		*r;
+	int			count;
+
+	r = rooms->next;
+	count = 0;
+	while (r)
+	{
+		count++;
+		if (ant_on_room(r->name, lemin, ant))
+			return (count);
+		r = r->next;
+	}
+	return (-1);
+}
+
+t_path		*find_best_path(t_lemin *lemin, t_ant *ant)
+{
+	t_path		*chosen;
+	int			first_path_rooms;
+	t_path		*paths;
+	int			pos_ant;
+	int			current_pos_ant;
+
+	first_path_rooms = count_rooms(lemin->paths->rooms);
+	paths = lemin->paths;
+	chosen = paths;
+	pos_ant = 0;
+	current_pos_ant = 0;
+	while (paths)
+	{
+		current_pos_ant = get_first_ant_on_path(paths->rooms, lemin, ant);
+		if (current_pos_ant > pos_ant || pos_ant == 0)
 		{
 			chosen = paths;
-			smallest = path_rooms;
+			pos_ant = current_pos_ant;
 		}
 		paths = paths->next;
 	}
@@ -38,5 +95,6 @@ t_path		*find_shortest_path(t_lemin *lemin)
 
 void		select_path(t_ant *ant, t_lemin *lemin)
 {
-	ant->following_path = find_shortest_path(lemin);
+	ant->following_path = find_best_path(lemin, ant);
+	log_ant(ant, lemin);
 }

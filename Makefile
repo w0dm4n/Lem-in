@@ -56,6 +56,7 @@ SRCBASE_LEM_IN	=	\
 					print.c						\
 					command.c					\
 					comment.c					\
+					logger.c					\
 
 SRCS_LEM_IN			=	$(addprefix $(SRCDIR_LEM_IN), $(SRCBASE_LEM_IN))
 OBJS_LEM_IN			=	$(addprefix $(OBJDIR_LEM_IN), $(SRCBASE_LEM_IN:.c=.o))

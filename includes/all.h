@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include "printf/printf.h"
+# include <fcntl.h>
 # include "../libft/includes/libft.h"
 
 # define START_ROOM			"##start"
@@ -28,6 +29,7 @@
 # define MAX_ANTS			100000
 # define MAX_PATHS			100
 # define _
+# define OPEN_ERROR			-1
 
 typedef struct				s_pipe
 {
@@ -130,6 +132,7 @@ void						append_paths_list(t_path *path, t_path *paths);
 int							count_paths(t_path *paths);
 t_path						*remove_from_paths_list(t_path *p, t_path *ps);
 int							count_rooms(t_room *rooms);
+void						append_path_room_list(t_room *room, t_path *path);
 
 /*
 **	COMMANDS LISTS
@@ -173,6 +176,7 @@ t_room						*copy_room(t_room *cpy);
 **	PATH
 */
 t_path						*alloc_path(t_room *room);
+void						switch_rooms(t_path *larger, t_path *smaller);
 
 /*
 **	PIPE
@@ -207,6 +211,7 @@ void						check_paths_validity(t_path *paths, t_lemin *lemin);
 **	PATH CHOOSER
 */
 void						select_path(t_ant *ant, t_lemin *lemin);
+void						range_paths(t_lemin *lemin);
 
 /*
 **	TIMELINE
@@ -218,4 +223,9 @@ BOOL						ant_in_room(char *room_name, t_lemin *lemin);
 **	PRINT
 */
 void						print_commands_and_comments(t_lemin *lemin);
+
+/*
+**	LOGGER
+*/
+void						log_ant(t_ant *ant, t_lemin *lemin);
 #endif
