@@ -52,18 +52,15 @@ void			free_lemin(t_lemin *lemin)
 		free(rooms);
 		rooms = rooms->next;
 	}
-	free_ants(lemin);
-	free(lemin);
+	_(free_ants(lemin), free(lemin));
 	while (commands)
 	{
-		ft_strdel(&commands->name);
-		free(commands);
+		_(ft_strdel(&commands->name), free(commands));
 		commands = commands->next;
 	}
 	while (comments)
 	{
-		ft_strdel(&comments->name);
-		free(comments);
+		_(ft_strdel(&comments->name), free(comments));
 		comments = comments->next;
 	}
 }

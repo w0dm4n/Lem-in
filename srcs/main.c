@@ -40,11 +40,11 @@ static void		parse_commands_and_comments(t_lemin *lemin, char *line)
 	}
 }
 
+#define VAR char *line = NULL
+
 static void		parse_entry(t_lemin *lemin)
 {
-	char	*line;
-
-	line = NULL;
+	VAR;
 	while ((get_next_line(STDIN_FILENO, &line)) > 0)
 	{
 		if (line != NULL && ft_strlen(line) > 0)
