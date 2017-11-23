@@ -27,6 +27,7 @@
 # define FALSE				0
 # define MAX_ANTS			100000
 # define MAX_PATHS			100
+# define _
 
 typedef struct				s_pipe
 {
@@ -102,7 +103,7 @@ void						append_ants_list(t_ant *new_ant, t_lemin *lemin);
 */
 void						append_paths_list(t_path *path, t_path *paths);
 int							count_paths(t_path *paths);
-t_path						*remove_from_paths_list(t_path *path, t_path *paths);
+t_path						*remove_from_paths_list(t_path *p, t_path *ps);
 int							count_rooms(t_room *rooms);
 
 /*
@@ -115,6 +116,8 @@ t_lemin						*alloc_lemin(void);
 */
 void						get_ants_length(t_lemin *lemin, char *line);
 void						init_ants(t_lemin *lemin);
+void						set_ant_room(t_ant *ant, t_room *room);
+void						move_ant(t_ant *ant, t_room *to, t_lemin *lemin);
 
 /*
 **	PARSER
@@ -154,7 +157,8 @@ void						move_ant(t_ant *ant, t_room *room, t_lemin *lemin);
 /*
 **	PATH FINDING
 */
-BOOL						find_paths(t_room *room, t_path *path, t_lemin *lemin, t_room *end_room);
+BOOL						find_paths(t_room *room, t_path *path,
+		t_lemin *lemin, t_room *end_room);
 
 /*
 **	PATH CHECKER
@@ -170,4 +174,5 @@ void						select_path(t_ant *ant, t_lemin *lemin);
 **	TIMELINE
 */
 void						start_timeline(t_lemin *lemin);
+BOOL						ant_in_room(char *room_name, t_lemin *lemin);
 #endif

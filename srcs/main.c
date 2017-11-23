@@ -61,7 +61,9 @@ static void		parse_entry(t_lemin *lemin)
 
 static void		print_list(t_room *rooms)
 {
-	t_room *p = rooms;
+	t_room *p;
+
+	p = rooms;
 	while (p)
 	{
 		ft_printf("%s - ", p->name);
@@ -80,7 +82,8 @@ int				main(int argc, char **argv)
 	if (lemin->ants_length > 0 && get_start_room(lemin) != NULL)
 	{
 		init_ants(lemin);
-		find_paths(get_start_room(lemin), lemin->paths, lemin, get_end_room(lemin));
+		find_paths(get_start_room(lemin), lemin->paths, lemin,
+			get_end_room(lemin));
 		check_paths_validity(lemin->paths, lemin);
 		if (count_paths(lemin->paths) > 0)
 			start_timeline(lemin);

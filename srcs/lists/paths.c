@@ -12,13 +12,15 @@
 
 #include "all.h"
 
+#define VARS p = paths; prev = NULL; next = NULL
+
 t_path		*remove_from_paths_list(t_path *path, t_path *paths)
 {
 	t_path		*p;
 	t_path		*prev;
+	t_path		*next;
 
-	p = paths;
-	prev = NULL;
+	VARS;
 	while (p)
 	{
 		if (p == path)
@@ -30,9 +32,9 @@ t_path		*remove_from_paths_list(t_path *path, t_path *paths)
 			}
 			else
 			{
-				t_path *next = p->next;
+				next = p->next;
 				free(p);
-				return(next);
+				return (next);
 			}
 		}
 		prev = p;

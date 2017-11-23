@@ -27,17 +27,12 @@ int			count_rooms(t_room *rooms)
 	return (count);
 }
 
-void		print_rooms(t_room *rooms)
-{
-	t_room	*p;
+#define FN_1 void		print_rooms(t_room *rooms)
+#define FN_2 { t_room	*p; p = rooms; while (p) {
+#define FN_3 ft_printf("%s - ", p->name); p = p->next; } }
+#define FUNC FN_1 FN_2 FN_3
 
-	p = rooms;
-	while (p)
-	{
-		ft_printf("%s - ", p->name);
-		p = p->next;
-	}
-}
+FUNC;
 
 t_room		*get_room_by_name(char *name, t_lemin *lemin)
 {

@@ -55,7 +55,7 @@ void		check_paths_validity(t_path *paths, t_lemin *lemin)
 		{
 			lemin->paths = remove_from_paths_list(p, paths);
 			check_paths_validity(lemin->paths, lemin);
-			break;
+			break ;
 		}
 		p = p->next;
 	}

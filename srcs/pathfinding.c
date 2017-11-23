@@ -41,7 +41,9 @@ t_room		*last_from_path(t_path *path)
 
 BOOL		in_path_list(t_room *room, t_room *rooms)
 {
-	t_room *p = rooms;
+	t_room	*p;
+
+	p = rooms;
 	if (p)
 	{
 		while (p)
@@ -83,7 +85,8 @@ t_path		*cpy_path(t_path *path)
 	return (n);
 }
 
-BOOL		check_result(t_room *room, t_room *end_room, t_path *path, t_lemin *lemin)
+BOOL		check_result(t_room *room, t_room *end_room, t_path *path,
+	t_lemin *lemin)
 {
 	t_path		*new_path;
 
