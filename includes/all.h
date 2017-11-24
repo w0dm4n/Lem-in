@@ -201,6 +201,15 @@ void						move_ant(t_ant *ant, t_room *room, t_lemin *lemin);
 */
 BOOL						find_paths(t_room *room, t_path *path,
 		t_lemin *lemin, t_room *end_room);
+BOOL						check_result(t_room *room, t_room *end_room,
+		t_path *path, t_lemin *lemin);
+t_room						*last_from_path(t_path *path);
+t_path						*cpy_path(t_path *path);
+BOOL						in_path_list(t_room *room, t_room *rooms);
+void						find_path_above(t_room *room, t_path *path,
+		t_lemin *lemin, t_room *end_room);
+BOOL						find_paths(t_room *room, t_path *path,
+		t_lemin *lemin, t_room *end_room);
 
 /*
 **	PATH CHECKER

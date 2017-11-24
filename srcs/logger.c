@@ -34,4 +34,6 @@ void			log_ant(t_ant *ant, t_lemin *lemin)
 	ft_asprintf(&file, "logs/ant_%d", ant->id);
 	if ((fd = open(file, O_RDWR | O_CREAT, 0666)) != OPEN_ERROR)
 		write(fd, path, ft_strlen(path));
+	ft_strdel(&path);
+	ft_strdel(&file);
 }

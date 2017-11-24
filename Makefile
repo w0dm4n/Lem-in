@@ -49,6 +49,7 @@ SRCBASE_LEM_IN	=	\
 					lists/comments.c			\
 					free.c						\
 					pathfinding.c				\
+					pathfinding_suite.c			\
 					timeline.c					\
 					path.c						\
 					paths_validity.c			\

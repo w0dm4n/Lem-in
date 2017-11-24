@@ -54,22 +54,6 @@ void		reset_path_list(t_path *path, t_lemin *lemin)
 	path->rooms = NULL;
 }
 
-t_path		*cpy_path(t_path *path)
-{
-	t_room	*rooms;
-	t_path	*n;
-
-	rooms = path->rooms;
-	if ((n = alloc_path(NULL)) == NULL)
-		return (NULL);
-	while (rooms)
-	{
-		append_path_room_list(copy_room(rooms), n);
-		rooms = rooms->next;
-	}
-	return (n);
-}
-
 BOOL		check_result(t_room *room, t_room *end_room, t_path *path,
 	t_lemin *lemin)
 {
@@ -89,50 +73,22 @@ BOOL		check_result(t_room *room, t_room *end_room, t_path *path,
 	return (FALSE);
 }
 
-BOOL		find_paths(t_room *room, t_path *path, t_lemin *lemin, t_room *end_room)
+BOOL		find_paths(t_room *room, t_path *path,
+		t_lemin *lemin, t_room *end_room)
 {
 	t_room		*last;
+	t_room		*rooms;
 
 	last = NULL;
+	rooms = NULL;
 	if (check_result(room, end_room, path, lemin))
 		return (TRUE);
-	t_pipe *pipe = room->pipes;
 	if (count_pipes(room) > 2)
-	{
-		if (!in_path_list(room, path->rooms))
-			append_path_room_list(copy_room(room), path);
-		while (pipe)
-		{
-			if (!in_path_list(pipe->room, path->rooms))
-			{
-				t_path *cpy = cpy_path(path);
-				append_path_room_list(copy_room(pipe->room), cpy);
-				find_paths(pipe->room, cpy, lemin, end_room);
-			}
-			pipe = pipe->next;
-		}
-	}
+		find_path_above(room, path, lemin, end_room);
 	else
 	{
-		t_room *rooms = lemin->rooms;
-		while (rooms)
-		{
-			if ((last = last_from_path(path)) == NULL)
-			{
-				append_path_room_list(copy_room(room), path);
-				find_paths(last_from_path(path), path, lemin, end_room);
-				break;
-			}
-			else if (rooms != room && rooms != end_room
-				 && room_linked(rooms, last) && !in_path_list(rooms, path->rooms))
-			{
-				append_path_room_list(copy_room(rooms), path);
-				if (check_result(room, end_room, path, lemin))
-					return (TRUE);
-				find_paths(last_from_path(path), path, lemin, end_room);
-			}
-			rooms = rooms->next;
-		}
+		if (find_path(lemin, room, path, end_room))
+			return (TRUE);
 	}
 	return (FALSE);
 }
