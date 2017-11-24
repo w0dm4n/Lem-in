@@ -6,7 +6,7 @@
 /*   By: frmarinh <frmarinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/19 22:45:17 by frmarinh          #+#    #+#             */
-/*   Updated: 2017/11/19 22:45:26 by frmarinh         ###   ########.fr       */
+/*   Updated: 2017/11/24 15:14:06 by frmarinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,8 +208,8 @@ t_path						*cpy_path(t_path *path);
 BOOL						in_path_list(t_room *room, t_room *rooms);
 void						find_path_above(t_room *room, t_path *path,
 		t_lemin *lemin, t_room *end_room);
-BOOL						find_paths(t_room *room, t_path *path,
-		t_lemin *lemin, t_room *end_room);
+BOOL						find_path(t_lemin *lemin, t_room *room,
+		t_path *path, t_room *end_room);
 
 /*
 **	PATH CHECKER
