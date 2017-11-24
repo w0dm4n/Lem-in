@@ -6,7 +6,7 @@
 /*   By: frmarinh <frmarinh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/23 05:52:47 by frmarinh          #+#    #+#             */
-/*   Updated: 2017/11/20 00:13:53 by frmarinh         ###   ########.fr       */
+/*   Updated: 2017/11/24 15:17:55 by frmarinh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -270,6 +270,7 @@ void				ft_free_array(void **array);
 # define ___N4		"{bold}{yellow}DEBUG {cyan}\'%s\' {white}%s:%i{reset}"
 # define ___N5		__func__, __FILE__, __LINE__
 # define DEBUGLINE	ft_printf(___N4 "\n", ___N5)
+
 int					get_next_line(const int fd, char **line);
 size_t				ft_lenarray(void **array);
 #endif
